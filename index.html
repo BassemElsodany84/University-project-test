@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="style/bootstrap.min.css" />
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/btn-effect.css" />
+    <link rel="stylesheet" href="style/login-modal.css" />
     <!--TODO fonts ---------------------------------------------->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+IT+Moderna:wght@100..400&family=Protest+Riot&display=swap"
@@ -33,19 +34,99 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <!-- *Animation -->
-
     <title>Taazur</title>
   </head>
   <body>
+    <!--* ======================================================== start modal ======================================== -->
+    <div class="login-modal">
+      <div class="container-modal" id="container">
+        <button id="close">X</button>
+        <div class="form-container-modal sign-up">
+          <form>
+            <h1 class="mb-4 fw-bold">Create Account</h1>
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <div class="account-type d-flex">
+              <button type="button" class="type-btn sign-btn me-4" id="type1">
+                Doctor
+              </button>
+              <button type="button" class="type-btn sign-btn" id="type2">
+                Patient
+              </button>
+            </div>
+            <div id="doc-info">
+              <p>
+                Please provide us the the following : <br />
+                - Your personal id <br />
+                - Medical License Details <br />
+                - Medical Degree (MBBS, MD, etc.)
+              </p>
+              <input type="file" />
+            </div>
+            <button type="button" class="sign-btn mobile-signup-btn">
+              Sign Up
+            </button>
+          </form>
+        </div>
+        <div class="form-container-modal sign-in">
+          <form>
+            <h1 class="fw-bold">Sign In</h1>
+            <div class="social-icons">
+              <a href="#" class="icon"
+                ><i class="fa-brands fa-google-plus-g"></i
+              ></a>
+              <a href="#" class="icon"
+                ><i class="fa-brands fa-facebook-f"></i
+              ></a>
+              <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+              <a href="#" class="icon"
+                ><i class="fa-brands fa-linkedin-in"></i
+              ></a>
+            </div>
+            <span>or use your email password</span>
+            <input type="email" placeholder="Email" />
+            <input type="password" placeholder="Password" />
+            <a href="#" class="d-block">Forget Your Password?</a>
+            <button type="button" class="sign-btn">Sign In</button>
+          </form>
+        </div>
+        <div class="toggle-btn">
+          <button id="register-mobile" onclick="toggleButtonText()">
+            Register
+          </button>
+        </div>
+        <div class="toggle-container-modal">
+          <div class="toggle">
+            <div class="toggle-panel toggle-left">
+              <h1>Welcome Back!</h1>
+              <p>Enter your personal details to use all of site features</p>
+              <button class="hidden sign-btn" id="login">Sign In</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+              <h1>Hello</h1>
+              <p>
+                Register with your personal details to use all of site features
+              </p>
+              <button class="hidden sign-btn" id="register">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--! ======================================================== end modal ======================================== -->
+    <!--* ======================================================== start navbar ======================================== -->
     <header class="sticky-top">
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container">
-          <a class="navbar-brand fw-bold" href="#"
-            ><i class="fa-solid fa-people-group fs-4 me-2"></i> Taazur
+          <a class="navbar-brand fw-bold" href="#">
+            <img src="imgs/Logo2.png" alt="LOGO" width="30" height="50" />
+            <span class="logo-text">Taazur</span>
           </a>
           <button
             class="navbar-toggler"
+            id="toggle-color"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
@@ -60,14 +141,12 @@
               class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-between"
             >
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-             
-              <li class="nav-item">
-                <a class="nav-link" href="#">Cases</a>
+                <a class="nav-link active" aria-current="page" href="#up"
+                  >Home</a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Doctor</a>
+                <a class="nav-link" href="cases.html">Cases</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Blogs </a>
@@ -77,7 +156,7 @@
               </li>
             </ul>
             <div class="login">
-              <button class="btn btn-login">
+              <button class="btn btn-login nav-link" id="show-login">
                 <i class="fa-solid fa-user fs-4"></i>
               </button>
             </div>
@@ -85,21 +164,20 @@
         </div>
       </nav>
     </header>
-    <!-- *start landing -->
-    <section class="landing header finisher-header" id="up">
-      <!-- <div class="overlay"></div> -->
+    <!--* ======================================================== start landing ======================================== -->
+    <section class="landing header" id="up">
       <div class="content">
-        <h2>Do something incredible today</h2>
+        <h1>Do something</h1>
+        <h1>incredible today</h1>
         <p>
           Every day is a chance to do something amazing. Start by making a small
           change, and who knows? It could lead to something life-changing.
         </p>
         <button class="btn main-btn btn-effect">See all cases</button>
       </div>
-      <!-- </div> -->
     </section>
-    <!-- !end landing -->
-    <!-- *start cases -->
+    <!--! ======================================================== end landing ======================================== -->
+    <!--* ======================================================== start cases ======================================== -->
     <section class="successful-cases py-5">
       <div class="container">
         <h2 class="sec-title text-center mb-5">Successful Cases</h2>
@@ -114,9 +192,6 @@
                   children, ensuring a brighter future for the next generation.
                 </p>
               </div>
-              <div class="card-btn">
-                <button class="btn main-btn">See All Cases</button>
-              </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 mb-4">
@@ -128,9 +203,6 @@
                   Delivering essential medical aid and support to those in need,
                   ensuring proper care and recovery for every patient.
                 </p>
-              </div>
-              <div class="card-btn">
-                <button class="btn main-btn">See All Cases</button>
               </div>
             </div>
           </div>
@@ -144,9 +216,6 @@
                   companionship, care, and a sense of community.
                 </p>
               </div>
-              <div class="card-btn">
-                <button class="btn main-btn">See All Cases</button>
-              </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 mb-4">
@@ -159,19 +228,18 @@
                   inspire learning and personal growth.
                 </p>
               </div>
-              <div class="card-btn">
-                <button class="btn main-btn">See All Cases</button>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- !end cases -->
-    <!-- *start doctors -->
-    <section class="doctors">
+    <!--! ======================================================== end cases ======================================== -->
+    <!--* ======================================================== start doctors ======================================== -->
+    <section class="doctors" id="doctors">
       <div class="container swiper">
-        <h2 class="sec-title text-white text-center mb-5 doctors-title">Popular Doctors</h2>
+        <h2 class="sec-title text-white text-center mb-5 doctors-title">
+          Popular Doctors
+        </h2>
         <div class="slider-wrapper">
           <div class="card-list swiper-wrapper">
             <div class="card-item swiper-slide">
@@ -200,7 +268,7 @@
             </div>
             <div class="card-item swiper-slide">
               <img src="imgs/user5.jpg" alt="User Image" class="user-image" />
-              <h2 class="user-name">William Thompson</h2>
+              <h2 class="user-name">William Larson</h2>
               <p class="user-profession">Cardiology</p>
               <button class="message-button">Message</button>
             </div>
@@ -234,19 +302,16 @@
           <div class="swiper-slide-button swiper-button-next"></div>
         </div>
       </div>
-      <div class="doctors-btn">
-        <button class="btn main-btn doctor-btn">See All Doctors</button>
-      </div>
     </section>
-    <!-- !end doctors -->
-    <!-- *start collaboration -->
-    <section class="collaboration">
+    <!--! ======================================================== end doctors ======================================== -->
+    <!--* ======================================================== start vision ======================================== -->
+    <section class="vision">
       <div class="container text-center my-5">
-        <h2 class="sec-title coll-title mb-5">Collaborations</h2>
+        <h2 class="sec-title vision-title mb-5">Our Vision</h2>
         <div class="row g-4 my-5">
           <div class="col-md-6">
-            <div class="coll-card p-4 position-relative">
-              <i class="fas fa-hand-holding-heart icon"></i>
+            <div class="vision-card p-4 position-relative">
+              <i class="fas fa-hand-holding-heart vision-icon"></i>
               <h5>Help people in need</h5>
               <p>
                 Provide direct support to an individual, family or community by
@@ -255,8 +320,8 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="coll-card p-4 position-relative">
-              <i class="fas fa-ambulance icon"></i>
+            <div class="vision-card p-4 position-relative">
+              <i class="fas fa-ambulance vision-icon"></i>
               <h5>Take action in an emergency</h5>
               <p>
                 Raise funds in response to a natural disaster or humanitarian
@@ -265,9 +330,9 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="coll-card p-4 position-relative">
-              <i class="fas fa-medal icon"></i>
-              <h5>Take part in a charity event</h5>
+            <div class="vision-card p-4 position-relative">
+              <i class="fas fa-medal vision-icon"></i>
+              <h5>Take part in a charity</h5>
               <p>
                 Choose from hundreds of official events including marathons,
                 bike rides, Dryathlons and bake offs…
@@ -275,8 +340,8 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="coll-card p-4 position-relative">
-              <i class="fas fa-birthday-cake icon"></i>
+            <div class="vision-card p-4 position-relative">
+              <i class="fas fa-birthday-cake vision-icon"></i>
               <h5>Celebrate an occasion</h5>
               <p>
                 Mark a special event like a birthday, wedding or final exam by
@@ -287,19 +352,35 @@
         </div>
       </div>
     </section>
-    <!-- !end collaboration -->
-    <!-- *start footer -->
+    <!--! ======================================================== end vision ================================================ -->
+    <!--* ======================================================== start collaborations ======================================== -->
+    <section class="collaborations">
+      <div class="container text-center">
+        <h5>hospitals and pharmacies on Taazur</h5>
+      </div>
+      <div class="container">
+        <img
+          class=""
+          src="./imgs/Collaborations.png"
+          alt=""
+          draggable="false"
+        />
+      </div>
+    </section>
+    <!--! ======================================================== end collaborations ======================================== -->
+    <!--* ======================================================== start footer ======================================== -->
     <footer>
       <div class="container py-5 mt-5">
         <button class="up-btn rounded-circle">
           <a class="text-light" href="#up">
-            <i class="fa-solid angle fa-angle-up"></i
-          ></a>
+            <i class="fa-solid angle fa-angle-up"></i>
+          </a>
         </button>
         <div class="row">
-          <div class="col-lg-3">
-            <a class="fw-bold fs-4 text-black" href="#"
-              ><i class="fa-solid fa-people-group me-2"></i> Taazur
+          <div class="col-lg-3 footer-logo">
+            <a class="fw-bold fs-4 text-black" href="#">
+              <img src="imgs/Logo2.png" alt="LOGO" width="30" height="50" />
+              <span class="logo-text">Taazur</span>
             </a>
           </div>
           <div class="col-lg-6">
@@ -307,30 +388,32 @@
               <li class="d-inline-block ms-4">Home</li>
               <li class="d-inline-block ms-4">About</li>
               <li class="d-inline-block ms-4">Cases</li>
-              <li class="d-inline-block ms-4">Doctors</li>
               <li class="d-inline-block ms-4">Blogs</li>
             </ul>
           </div>
           <div class="col-lg-3">
             <p class="text-secondary">
-              Copyright © 2025 All rights reserved |
-              <i class="fa fa-heart" aria-hidden="true"></i>
-              Taazur
+              Copyright © 2025 All rights reserved to Taazur | Made with
+              <i
+                class="fa fa-heart"
+                aria-hidden="true"
+                style="color: #3b1e54"
+              ></i>
             </p>
           </div>
         </div>
       </div>
     </footer>
-    <!-- !end footer ------------------------------------------------------------------------------------->
+    <!--! ======================================================== end footer ======================================== -->
 
-    <!-- ?swiper link -->
+    <!--? swiper link -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- ?Header link -->
-    <script src="js/finisher-header.es5.min.js"></script>
+    <!--? login-modal link -->
+    <script src="js/login-modal.js"></script>
     <script src="js/header.js"></script>
-    <!-- ?custom js -->
+    <!--? custom js -->
     <script src="js/main.js"></script>
-    <!-- ?bootstrap -->
+    <!--? bootstrap -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/all.min.js"></script>
   </body>
