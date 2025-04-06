@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html
+  lang="ar"
+  dir="ltr"
+  class="fontawesome-i2svg-active fontawesome-i2svg-complete"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style/all.css" />
+    <link rel="stylesheet" href="style/all.min.css" />
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/login-modal.css" />
+    <link rel="stylesheet" href="style/blog.css" />
+    <link rel="stylesheet" href="style/about.css" />
+
+    <!--TODO fonts ---------------------------------------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+IT+Moderna:wght@100..400&family=Protest+Riot&display=swap"
+      rel="stylesheet"
+    />
+    <!--TODO Fonts 2  ----------------------------------------------->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+IT+Moderna:wght@100..400&family=Protest+Riot&display=swap"
+      rel="stylesheet"
+    />
+    <title>Taazur</title>
+  </head>
+<body>
+    <!--* ======================================================== start modal ======================================== -->
+    <div class="login-modal">
+        <div class="container-modal" id="container">
+            <button id="close">X</button>
+            <div class="form-container-modal sign-up">
+            <form>
+                <h1 class="mb-4 fw-bold">Create Account</h1>
+                <input type="text" placeholder="Name" />
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <div class="account-type d-flex">
+                    <button type="button" class="type-btn sign-btn me-4" id="type1">
+                        Doctor
+                    </button>
+                    <button type="button" class="type-btn sign-btn" id="type2">
+                        Patient
+                    </button>
+                </div>
+                <div id="doc-info">
+                    <p>
+                    Please provide us the the following : <br />
+                    - Your personal id <br />
+                    - Medical License Details <br />
+                    - Medical Degree (MBBS, MD, etc.)
+                    </p>
+                    <input type="file" />
+                </div>
+                <button type="button" class="sign-btn mobile-signup-btn">
+                    Sign Up
+                </button>
+            </form>
+        </div>
+          <div class="form-container-modal sign-in">
+            <form>
+              <h1 class="fw-bold">Sign In</h1>
+              <div class="social-icons">
+                <a href="#" class="icon"
+                  ><i class="fa-brands fa-google-plus-g"></i
+                ></a>
+                <a href="#" class="icon"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+                <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="icon"
+                  ><i class="fa-brands fa-linkedin-in"></i
+                ></a>
+              </div>
+              <span>or use your email password</span>
+              <input type="email" placeholder="Email" />
+              <input type="password" placeholder="Password" />
+              <a href="#" class="d-block">Forget Your Password?</a>
+              <button type="button" class="sign-btn">Sign In</button>
+            </form>
+          </div>
+          <div class="toggle-btn">
+            <button id="register-mobile" onclick="toggleButtonText()">
+              Register
+            </button>
+          </div>
+          <div class="toggle-container-modal">
+            <div class="toggle">
+              <div class="toggle-panel toggle-left">
+                <h1>Welcome Back!</h1>
+                <p>Enter your personal details to use all of site features</p>
+                <button class="hidden sign-btn" id="login">Sign In</button>
+              </div>
+              <div class="toggle-panel toggle-right">
+                <h1>Hello</h1>
+                <p>
+                  Register with your personal details to use all of site features
+                </p>
+                <button class="hidden sign-btn" id="register">Sign Up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  
+      <!--! ======================================================== end modal ======================================== -->
+      <!--* ======================================================== start navbar ======================================== -->
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+              <img src="./imgs/logo2.png" alt="LOGO" width="30" height="50" />
+              <span class="logo-text">Taazur</span>
+            </a>
+            <button class="navbar-toggler"
+              id="toggle-color"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul
+                class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-between"
+              >
+                <li class="nav-item">
+                  <a class="nav-link " aria-current="page" href="index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="cases.html">Cases</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="blog.html">Blogs </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="about.html">About</a>
+                </li>
+              </ul>
+              <div class="login">
+                <button class="btn btn-login nav-link" id="show-login">
+                  <i class="fa-solid fa-user fs-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    
+
+    <!--* ======================================================== start about ======================================== -->  
+<!-- Hero Section -->
+    <div class="hero-about" id="up">
+        <div class="container">
+            <h1 class="display-4 fw-bold">About Taazur</h1>
+            <p class="lead">Compassionate care. Advanced medicine. Trusted by our community since 2021.</p>
+        </div>
+    </div>
+<!-- Main Content -->
+<div class="container">
+<!-- Our Story Section -->
+<section class="mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h2 class="mb-4">Our Story</h2>
+            <p class="lead">Taazur Medical Center was founded in 2021 with a simple mission: to provide exceptional healthcare to our community.</p>
+                    <p>What began as a small family practice has grown into a comprehensive medical center serving over 50,000 patients annually. Our growth has always been guided by our core values of compassion, excellence, and innovation.</p>
+                    <p>Today, we're proud to be recognized as one of the region's leading healthcare providers, with state-of-the-art facilities and a team of board-certified specialists.</p>
+        </div>
+        <div class="col-lg-6">
+            <img src="imgs/post1.JPG" alt="Our Clinic" class="img-fluid rounded shadow">
+        </div>
+    </div>
+</section>
+
+<!-- Mission and Values -->
+<section class="my-5 py-4">
+    <h2 class="text-center mb-5">Our Mission & Values</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="mission-card card h-100 p-4">
+                <div class="card-body">
+                    <i class=" mb-2 fa-solid fa-heart" style="color: #3b1e54;"></i>
+                    <h3 class="h4">Compassionate Care</h3>
+                    <p>We treat every patient with dignity, respect, and kindness, understanding that healthcare is deeply personal.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mission-card card h-100 p-4">
+                <div class="card-body">
+                    <i class=" mb-2 fa-solid fa-award" style="color: #3b1e54;"></i>
+                    <h3 class="h4">Clinical Excellence</h3>
+                    <p>We maintain the highest standards of medical practice through continuous learning and evidence-based care.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mission-card card h-100 p-4">
+                <div class="card-body">
+                    <i class=" mb-2 fa-solid fa-user-group" style="color: #3b1e54;"></i>
+                    <h3 class="h4">Community Focus</h3>
+                    <p>We're committed to improving the health of our entire community through outreach and education programs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Team -->
+<section class="my-5 py-4">
+    <h2 class="text-center mb-5">Meet Our Medical Team</h2>
+    <div class="row g-4">
+        <!-- Doctor 1 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="doctor-card card">
+                <img src="imgs/doctor1.JPG" alt="User Image" class="user-image" />
+                <div class="card-body text-center">
+                    <h5 class="card-title">Dr. Ola Ahmed </h5>
+                    <p class="text-muted">Cardiologist</p>
+                    <p class="card-text small">MD, Harvard Medical School. Specializing in preventive cardiology.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Doctor 2 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="doctor-card card">
+                <img src="imgs/doctor2.JPG" alt="User Image" class="user-image" />
+                <div class="card-body text-center">
+                    <h5 class="card-title">Dr. Mariam Ahmed</h5>
+                    <p class="text-muted">Pediatrician</p>
+                    <p class="card-text small">MD, Johns Hopkins. 15 years of pediatric experience.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Doctor 3 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="doctor-card card">
+                <img src="imgs/doctor3.JPG" alt="User Image" class="user-image" />
+                <div class="card-body text-center">
+                    <h5 class="card-title">Dr. Hany Martinez</h5>
+                    <p class="text-muted">Neurologist</p>
+                    <p class="card-text small">PhD, Stanford. Expert in neurodegenerative .</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Doctor 4 -->
+        <div class="col-lg-3 col-md-6">
+            <div class="doctor-card card">
+                <img src="imgs/doctor4.jpg" alt="User Image" class="user-image" />
+                <div class="card-body text-center">
+                    <h5 class="card-title">Dr. Malak Ahmed</h5>
+                    <p class="text-muted">Orthopedic Surgeon</p>
+                    <p class="card-text small">MD, Mayo Clinic. Sports medicine specialist.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</section>
+
+<!-- Stats Section -->
+<section class="my-5 py-5 bg-light rounded-3">
+    <h2 class="text-center mb-5 ">Our Stats</h2>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="stats-item">
+                <div class="stats-number">5+</div>
+                <div class="stats-label">Years of Service</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-item">
+                <div class="stats-number">40+</div>
+                <div class="stats-label">Specialists</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-item">
+                <div class="stats-number">30K+</div>
+                <div class="stats-label">Patients Annually</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stats-item">
+                <div class="stats-number">98%</div>
+                <div class="stats-label">Patient Satisfaction</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline -->
+<section class="my-5">
+    <h2 class="text-center mb-5">Our Journey</h2>
+    <div class="timeline ">
+        <div class="timeline-item">
+            <h4>2021</h4>
+            <p>Founded as a small family practice with 2 physicians in downtown Healthville.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>2022</h4>
+            <p>Expanded to include pediatric and women's health services. Moved to our current main campus location.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>2023</h4>
+            <p>Added specialty services including cardiology and orthopedics. Achieved JCAHO accreditation.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>2024</h4>
+            <p>Opened our state-of-the-art surgical center and 24-hour emergency department.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>2025</h4>
+            <p>Recognized as a Top 100 Hospital by the National Healthcare Quality Index.</p>
+        </div>
+    </div>
+</section>
+
+
+</div>
+    <!--* ======================================================== end about ======================================== -->
+    <!--* ======================================================== start footer ======================================== -->
+    <footer>
+        <div class="container py-5 mt-5">
+            <button class="up-btn rounded-circle">
+            <a class="text-light" href="#up">
+                <i class="fa-solid angle fa-angle-up"></i>
+            </a>
+            </button>
+            <div class="row">
+                <div class="col-lg-3 footer-logo">
+                    <a class="fw-bold fs-4 text-black" href="#">
+                    <img src="./imgs/Logo2.png" alt="LOGO" width="30" height="50" />
+                    <span class="logo-text">Taazur</span>
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-unstyled footer-list d-flex justify-content-center">
+                        <li class="d-inline-block ms-4" >Home</li>
+                        <li class="d-inline-block ms-4">About</li>
+                        <li class="d-inline-block ms-4">Cases</li>
+                        <li class="d-inline-block ms-4">Blogs</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <p class="text-secondary">
+                    Copyright © 2025 All rights reserved to Taazur | Made with
+                        <i
+                        class="fa fa-heart"
+                        aria-hidden="true"
+                        style="color: #3b1e54"
+                        ></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--! ======================================================== end footer ======================================== -->
+
+
+
+    <Script src="js/login-modal.js"></Script>
+    <script src="js/navbar-toggler.js"></script>
+    <!--? bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+</body>
+</html>

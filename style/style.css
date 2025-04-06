@@ -338,6 +338,10 @@ footer .up-btn {
 footer .up-btn .angle {
   font-size: 35px;
 }
+
+.footer-list li {
+  margin-top: 25px;
+}
 /*! ==================== End Footer ====================*/
 /** ==================== Start Media Query ====================*/
 /** ==================== Small ====================*/
@@ -403,11 +407,6 @@ footer .up-btn .angle {
     left: 45%;
   }
   /*? ==================== Collaborations ====================*/
-
-  /*? ==================== Footer ====================*/
-  .footer-list li {
-    margin-top: 25px;
-  }
 }
 
 @media screen and (max-width: 440px) {

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="style/all.min.css" />
     <link rel="stylesheet" href="style/bootstrap.min.css" />
     <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/btn-effect.css" />
     <link rel="stylesheet" href="style/login-modal.css" />
     <link rel="stylesheet" href="style/cases.css" />
     <!--TODO fonts ---------------------------------------------->
@@ -116,7 +115,7 @@
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">
+      <a class="navbar-brand fw-bold" href="index.html">
         <img src="./imgs/Logo2.png" alt="LOGO" width="30" height="50" />
         <span class="logo-text">Taazur</span>
       </a>
@@ -136,19 +135,20 @@
         <ul
           class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-between"
         >
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="cases.html">Cases</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Blogs </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="index.html"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="cases.html">Cases</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="blog.html">Blogs </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html">About</a>
+        </li>
           </li>
         </ul>
         <div class="login">
@@ -172,19 +172,19 @@
                     <button class="btn btn-filter1 w-100 mb-2 filter-btn" data-category="Med">Med</button>
                     <button class="btn btn-filter2 w-100 mb-3 filter-btn" data-category="Dental">Dental</button>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="filter1">
-                        <label class="form-check-label" for="filter1">Filter 1</label>
+                        <input class="form-check-input" type="checkbox" id="filter1-mobile">
+                        <label class="form-check-label" for="filter1-mobile">Filter 1</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="filter2">
-                        <label class="form-check-label" for="filter2">Filter 2</label>
+                        <input class="form-check-input" type="checkbox" id="filter2-mobile">
+                        <label class="form-check-label" for="filter2-mobile">Filter 2</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="filter3">
-                        <label class="form-check-label" for="filter3">Filter 3</label>
+                        <input class="form-check-input" type="checkbox" id="filter3-mobile">
+                        <label class="form-check-label" for="filter3-mobile">Filter 3</label>
                     </div>
                     <button class="btn btn-danger w-100 mt-3 removeFilter"> Remove Filter</button>
-                    <button class="btn btn-creation w-100 mt-3 "> Create a Case</button>
+                    <button class="btn btn-creation w-100 mt-3 " onclick="window.location.href ='createACase.html'"> Create a Case</button>
                   </div>
                 </div>
                 
@@ -209,7 +209,7 @@
                       <button class="btn btn-danger w-10 mt-3 removeFilter">  <i class="fa-solid fa-trash"></i></button>
                       <span class="w-80 mt-3 ms-2 remove-text  ">Remove Filter</span>
                     </div>
-                    <button class="btn btn-creation w-100 mt-3 "> Create a Case</button>
+                    <button class="btn btn-creation w-100 mt-3 " onclick="window.location.href ='createACase.html'"> Create a Case</button>
                 </div>
             </div>
             
@@ -285,7 +285,7 @@
                     </div>
                     <!-- Right Section -->
                     <div class="col-md-6 text-center">
-                      <img src="image.jpg" class="img-fluid rounded-2" alt="Image">
+                      <img class="img-fluid rounded-2" alt="Image">
                       <h5 class="modal-title mt-3" id="takeModalLabel"> </h5>
                       <p class="modal-description"> </p>
                     </div>
@@ -293,7 +293,7 @@
                   <!-- Mobile Layout -->
                   <div class="d-md-none"> 
                     <div class="text-center">
-                      <img src="image.jpg" class="img-fluid rounded-2" alt="Image">
+                      <img class="img-fluid rounded-2" alt="Image">
                       <h5 class="modal-title mt-3" id="takeModalLabel"> </h5>
                       <p class="modal-description"> </p>
                     </div>
@@ -350,8 +350,8 @@
       <!--! ======================================================== end footer ======================================== -->
     <!--? custom js -->
     <script src="js/cases.js"></script>
-    <script src="js/main.js"></script>
     <Script src="js/login-modal.js"></Script>
+    <script src="js/navbar-toggler.js"></script>
     <!--? bootstrap -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/all.min.js"></script>

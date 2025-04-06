@@ -9,74 +9,74 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       id: 1,
       category: "Med",
-      title: "CAse1",
+      title: "An Itchy, Slow-Growing Infant",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "generally dry skin, with widespread low-grade erythema and raised, poorly defined patches of active eczema; there are widespread excoriations.",
+      image: "imgs/med1.jpg",
     },
     {
       id: 2,
       category: "Dental",
-      title: "CAse1",
+      title: "Curved Roots Case",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "The challenges of treating this upper 6 with curved roots and calcified pulp and canals.",
+      image: "imgs/dental1.jpg",
     },
     {
       id: 3,
       category: "Med",
-      title: "CAse1",
+      title: "A Toddler With Brown Patches",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "His height and weight are on the 75th and 91st centiles for his age, respectively. He is cooperative and follows directions. He has diffuse, scattered, monomorphic, small oval-round reddish-brown macules concentrated predominantly over his anterior and posterior trunk, but also extending to his neck and with a few scattered lesions on his limbs. There are more than 40 of these lesions.",
+      image: "imgs/med2.jpg",
     },
     {
       id: 4,
       category: "Dental",
-      title: "CAse1",
+      title: "Deep Canal Divisions ",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "This maxilliary first molar had a wide, blunt palatal root and this can hint at the presence of complex anatomy.",
+      image: "imgs/dental2.jpg",
     },
     {
       id: 5,
       category: "Dental",
-      title: "CAse1",
+      title: "Exceptionally Long Roots",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "This 32mm long lower canine shows unusual and sudden canal obliteration at mid-root level.",
+      image: "imgs/dental3.jpg",
     },
     {
       id: 6,
       category: "Med",
-      title: "CAse1",
+      title: "Uterine Fibroids / Leiomyomas",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "Fibroid in a 16 year old girl.",
+      image: "imgs/med3.jpg",
     },
     {
       id: 7,
       category: "Med",
-      title: "CAse1",
+      title: "Dermoid Cysts / Cystic Teratomas",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "Tordated dermoid cyst or teratoma simplex.",
+      image: "imgs/med4.jpg",
     },
     {
       id: 8,
       category: "Dental",
-      title: "CAse1",
+      title: "Clinical Orthodontics",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community.",
-      image: "imgs/case4.jpg",
+        "crowding in the dental arches as well as eruption of teeth 27, 37 and 47. Tooth 17 was not visible. An OPG X-ray revealed that teeth 17 and 18 were stacked on top of one another.",
+      image: "imgs/dental4.jpg",
     },
     {
       id: 9,
       category: "Dental",
-      title: "CAse1",
+      title: "Lower Jaw Is Too Far Forward",
       description:
-        "Connecting volunteers with elderly individuals to provide companionship, care, and a sense of community. ",
-      image: "imgs/case4.jpg",
+        " 8-year-, 5-month-old female Concave and forward sloping, facial profile secondary to apparent mandibular prognathia Otherwise, fairly symmetrical facial features. ",
+      image: "imgs/dental5.jpg",
     },
   ];
 
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="card">
                 <img src="${caseItem.image}" class="card-img-top" alt="${caseItem.title}">
                 <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-between">
+                    <h5 class="card-title  d-flex justify-content-between">
                         ${caseItem.title} <span class="badge bg-secondary">${caseItem.category}</span>
                     </h5>
                     <p class="card-text">${caseItem.description}</p>

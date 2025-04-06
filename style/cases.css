@@ -1,3 +1,7 @@
+#case-2 h5{
+    height: 47px;
+}
+
 input{
     border-color: var(--primary-color) !important;
 }
@@ -8,8 +12,20 @@ input:focus {
 .card{
     height: 450px;
 }
+.card-img-top{
+    min-height: 190px;
+    max-height:200px ;
+}
+.card-title{
+    margin-bottom: 10px;
+}
+.badge{
+    height: 25px;
+}
 .card-text{
     max-height: 90px !important; 
+    min-height: 70px;
+    height: 45%;
     overflow: auto;
 }
 .btn-help {
@@ -65,7 +81,6 @@ input:focus {
 }
 
 .btn-creation{
-    /* background-color: var(--accent-color); */
     color: var(--primary-color);
     border-color: var(--primary-color);
     padding: 10px 20px;
@@ -82,7 +97,6 @@ input:focus {
 .modal-content {
 border-radius: 15px;
 padding: 10px;
-/* position: relative; */
 }
 
 .modal-header {
@@ -214,6 +228,9 @@ font-size: 19px;
         padding: 10px;
         white-space: nowrap; 
     }
+    .card h5 {
+        height: 47px !important; 
+    }
     
 }
 
@@ -227,9 +244,35 @@ font-size: 19px;
         max-width: 40% !important;
       }
 }
+@media (max-width: 767px){
+    .card {
+        height: 500px !important;
+      }
+    .card-img-top{
+        min-height: 250px !important;
+        max-height: 300px !important;
+    }
+}
 @media (min-width: 992px) and (max-width: 1199px) {
+    .case-btn:nth-child(1) {
+        width: 60%;
+        margin-right: 15px !important;
+    }
+}
+@media (min-width: 992px) and (max-width: 1399px) {
+    .card {
+        height: 450px; 
+    }
     .case-btn {
         font-size: 12px !important; 
-        width: 40%;
+        /* width: 40%; */
+        height: 50px;
+    }
+    .card h5 {
+        font-size: 18px !important;
+        height: 47px !important;
+    }
+    .card p{
+        margin-top: 15px !important; 
     }
 }
