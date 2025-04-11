@@ -12,6 +12,11 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL,
     role ENUM('doctor', 'patient') NOT NULL,
     active BOOLEAN NOT NULL DEFAULT TRUE,
+    phone_number VARCHAR(20),
+    street VARCHAR(255),
+    city VARCHAR(100),
+    country VARCHAR(100),
+    date_of_birth DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -34,10 +39,14 @@ CREATE TABLE patients (
 CREATE TABLE cases (
     id INT AUTO_INCREMENT PRIMARY KEY,
     doctor_id INT NOT NULL,
+    patient_id INT NOT NULL,
     title VARCHAR(255),
     description TEXT,
+    category ENUM('dental', 'medical') NOT NULL DEFAULT 'medical',
+    tags VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (doctor_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (doctor_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (patient_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- CASE IMAGES TABLE
@@ -59,26 +68,45 @@ CREATE TABLE content (
 );
 
 -- Insert sample users
-INSERT INTO users (first_name, last_name, email, password, role, active) VALUES
-('Ayman', 'Salem', 'ayman@example.com', 'hashedpass1', 'doctor', FALSE),
-('Sara', 'Patient', 'sara@example.com', 'hashedpass2', 'patient', TRUE);
+INSERT INTO users (first_name, last_name, email, password, role, active, phone_number, street, city, country, date_of_birth) VALUES
+('Doctor', 'One', 'doctor1@example.com', 'password1', 'doctor', TRUE, '1234567890', '123 Clinic St', 'Cairo', 'Egypt', '1980-01-01'),
+('Doctor', 'Two', 'doctor2@example.com', 'password2', 'doctor', TRUE, '0987654321', '456 Health Ave', 'Alexandria', 'Egypt', '1975-06-15'),
+('Patient', 'One', 'patient1@example.com', 'password3', 'patient', TRUE, '1122334455', '789 Wellness Rd', 'Giza', 'Egypt', '2000-05-10'),
+('Patient', 'Two', 'patient2@example.com', 'password4', 'patient', TRUE, '5566778899', '321 Recovery Ln', 'Mansoura', 'Egypt', '1995-09-23');
 
 -- Insert doctor info
-INSERT INTO doctors (user_id, license_number, medical_degree, verification_file)
-VALUES (1, 'DOC123', 'MD', 'uploads/ids/doc123.png');
+INSERT INTO doctors (user_id, license_number, medical_degree, verification_file) VALUES
+(1, 'DOC001', 'MBBS', 'uploads/ids/doc001.png'),
+(2, 'DOC002', 'MD', 'uploads/ids/doc002.png');
 
 -- Insert patient info
-INSERT INTO patients (user_id) VALUES (2);
+INSERT INTO patients (user_id) VALUES
+(3),
+(4);
 
 -- Insert sample cases
-INSERT INTO cases (doctor_id, title, description) VALUES
-(1, 'Child Flu', 'Treated with rest and hydration.'),
-(1, 'Burn Case', 'Second-degree burn on left hand.');
+INSERT INTO cases (doctor_id, patient_id, title, description, category, tags) VALUES
+(1, 3, 'An Itchy, Slow-Growing Infant', 'generally dry skin, with widespread low-grade erythema and raised, poorly defined patches of active eczema; there are widespread excoriations.', 'medical', 'eczema, infant, dermatology'),
+(1, 3, 'Curved Roots Case', 'The challenges of treating this upper 6 with curved roots and calcified pulp and canals.', 'dental', 'roots, calcified, endodontics'),
+(1, 3, 'A Toddler With Brown Patches', 'His height and weight are on the 75th and 91st centiles for his age, respectively. He is cooperative and follows directions. He has diffuse, scattered, monomorphic, small oval-round reddish-brown macules concentrated predominantly over his anterior and posterior trunk, but also extending to his neck and with a few scattered lesions on his limbs. There are more than 40 of these lesions.', 'medical', 'pediatric, dermatology, macules'),
+(1, 3, 'Deep Canal Divisions', 'This maxilliary first molar had a wide, blunt palatal root and this can hint at the presence of complex anatomy.', 'dental', 'molar, canal, root'),
+(1, 3, 'Exceptionally Long Roots', 'This 32mm long lower canine shows unusual and sudden canal obliteration at mid-root level.', 'dental', 'long root, canine'),
+(2, 4, 'Uterine Fibroids / Leiomyomas', 'Fibroid in a 16 year old girl.', 'medical', 'gynecology, fibroid'),
+(2, 4, 'Dermoid Cysts / Cystic Teratomas', 'Tordated dermoid cyst or teratoma simplex.', 'medical', 'teratoma, cyst'),
+(2, 4, 'Clinical Orthodontics', 'crowding in the dental arches as well as eruption of teeth 27, 37 and 47. Tooth 17 was not visible. An OPG X-ray revealed that teeth 17 and 18 were stacked on top of one another.', 'dental', 'orthodontics, teeth, x-ray'),
+(2, 4, 'Lower Jaw Is Too Far Forward', '8-year-, 5-month-old female Concave and forward sloping, facial profile secondary to apparent mandibular prognathia Otherwise, fairly symmetrical facial features.', 'dental', 'mandibular, profile, child');
 
--- Insert case images
+-- Insert into case_images table
 INSERT INTO case_images (case_id, image_url) VALUES
-(1, 'imgs/flu_case1.jpg'),
-(2, 'imgs/burn_case1.jpg');
+(1, 'uploads/cases/med1.jpg'),
+(2, 'uploads/cases/dental1.jpg'),
+(3, 'uploads/cases/med2.jpg'),
+(4, 'uploads/cases/dental2.jpg'),
+(5, 'uploads/cases/dental3.jpg'),
+(6, 'uploads/cases/med3.jpg'),
+(7, 'uploads/cases/med4.jpg'),
+(8, 'uploads/cases/dental4.jpg'),
+(9, 'uploads/cases/dental5.jpg');
 
 -- Insert dynamic content
 INSERT INTO content (page_key, title, body) VALUES

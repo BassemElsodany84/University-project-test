@@ -1,200 +1,81 @@
-<!DOCTYPE html>
-<html
-  lang="ar"
-  dir="ltr"
-  class="fontawesome-i2svg-active fontawesome-i2svg-complete"
->
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style/all.css" />
-    <link rel="stylesheet" href="style/all.min.css" />
-    <link rel="stylesheet" href="style/bootstrap.min.css" />
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/creatCase.css" />
-    <link rel="stylesheet" href="style/login-modal.css" />
-    <!--TODO fonts ---------------------------------------------->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+IT+Moderna:wght@100..400&family=Protest+Riot&display=swap"
-      rel="stylesheet"
-    />
-    <!--TODO Fonts 2  ----------------------------------------------->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+IT+Moderna:wght@100..400&family=Protest+Riot&display=swap"
-      rel="stylesheet"
-    />
-    <title>Taazur</title>
-  </head>
-  <body>
-    <!--* ======================================================== start modal ======================================== -->
-    <div class="login-modal">
-      <div class="container-modal" id="container">
-        <button id="close">X</button>
-        <div class="form-container-modal sign-up">
-          <form>
-            <h1 class="mb-4 fw-bold">Create Account</h1>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <div class="account-type d-flex">
-              <button type="button" class="type-btn sign-btn me-4" id="type1">
-                Doctor
-              </button>
-              <button type="button" class="type-btn sign-btn" id="type2">
-                Patient
-              </button>
-            </div>
-            <div id="doc-info">
-              <p>
-                Please provide us the the following : <br />
-                - Your personal id <br />
-                - Medical License Details <br />
-                - Medical Degree (MBBS, MD, etc.)
-              </p>
-              <input type="file" />
-            </div>
-            <button type="button" class="sign-btn mobile-signup-btn">
-              Sign Up
-            </button>
-          </form>
-        </div>
-        <div class="form-container-modal sign-in">
-          <form>
-            <h1 class="fw-bold">Sign In</h1>
-            <div class="social-icons">
-              <a href="#" class="icon"
-                ><i class="fa-brands fa-google-plus-g"></i
-              ></a>
-              <a href="#" class="icon"
-                ><i class="fa-brands fa-facebook-f"></i
-              ></a>
-              <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-              <a href="#" class="icon"
-                ><i class="fa-brands fa-linkedin-in"></i
-              ></a>
-            </div>
-            <span>or use your email password</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#" class="d-block">Forget Your Password?</a>
-            <button type="button" class="sign-btn">Sign In</button>
-          </form>
-        </div>
-        <div class="toggle-btn">
-          <button id="register-mobile" onclick="toggleButtonText()">
-            Register
-          </button>
-        </div>
-        <div class="toggle-container-modal">
-          <div class="toggle">
-            <div class="toggle-panel toggle-left">
-              <h1>Welcome Back!</h1>
-              <p>Enter your personal details to use all of site features</p>
-              <button class="hidden sign-btn" id="login">Sign In</button>
-            </div>
-            <div class="toggle-panel toggle-right">
-              <h1>Hello</h1>
-              <p>
-                Register with your personal details to use all of site features
-              </p>
-              <button class="hidden sign-btn" id="register">Sign Up</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<?php include 'header.php'; ?>
+<?php
+include 'db.php';
 
-    <!--! ======================================================== end modal ======================================== -->
-    <!--* ======================================================== start navbar ======================================== -->
-    <header class="sticky-top">
-      <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container">
-          <a class="navbar-brand fw-bold" href="index.html">
-            <img src="./imgs/logo2.png" alt="LOGO" width="30" height="50" />
-            <span class="logo-text">Taazur</span>
-          </a>
-          <button
-            class="navbar-toggler"
-            id="toggle-color"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <i class="fa-solid fa-bars"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul
-              class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-between"
-            >
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="cases.html">Cases</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="blog.html">Blogs </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            </ul>
-            <div class="login">
-              <button class="btn btn-login nav-link" id="show-login">
-                <i class="fa-solid fa-user fs-4"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'doctor' || !$_SESSION['active']) {
+        $error_message = "You must be a verified doctor to submit a case.";
+    } else {
+        $doctor_id = $_SESSION['user_id'];
+        $title = $conn->real_escape_string($_POST['title']);
+        $description = $conn->real_escape_string($_POST['description']);
+        $category = $_POST['caseType'];
+        $patient_id = $_POST['patient_id'];
+        $tags = $conn->real_escape_string($_POST['tags']);
+
+        $stmt = $conn->prepare("INSERT INTO cases (doctor_id, patient_id, title, description, category, tags) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iissss", $doctor_id, $patient_id, $title, $description, $category, $tags);
+        $stmt->execute();
+        $case_id = $stmt->insert_id;
+        $stmt->close();
+
+        $image_dir = "imgs/";
+        foreach ($_FILES["fileAttachment"]["tmp_name"] as $index => $tmp_name) {
+            if ($_FILES["fileAttachment"]["error"][$index] === 0) {
+                $filename = time() . "_" . basename($_FILES["fileAttachment"]["name"][$index]);
+                $target_path = $image_dir . $filename;
+                move_uploaded_file($tmp_name, $target_path);
+
+                $stmt = $conn->prepare("INSERT INTO case_images (case_id, image_url) VALUES (?, ?)");
+                $stmt->bind_param("is", $case_id, $target_path);
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
+
+        echo "<script>alert('Case submitted successfully.'); window.location.href='cases.php';</script>";
+    }
+}
+?>
      <!--* ======================================================== start the form ======================================== -->
-     <div class="container" >
-        <div class="form-container   m-5 p-5 " id="up">
+     <div class="container mb-5">
+        <div class="form-container m-5 p-5" id="up">
             <h2 class="form-title"><i class="fa-solid fa-file-lines"></i> Medical/Dental Case Submission</h2>
             
-            <form id="caseForm" enctype="multipart/form-data">
+            <?php if (isset($error_message)): ?>
+                <div class="alert alert-danger" role="alert">
+                  <?= $error_message ?>
+                </div>
+            <?php endif; ?>
+
+            <form id="caseForm" enctype="multipart/form-data" method="POST">
                 <!-- Personal Information Section -->
                 <div class="mb-4">
                     <h5 class="mb-3 border-bottom pb-2">Personal Information</h5>
                     
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label required-field">Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="col-md-3 mb-3">
-                            <label for="age" class="form-label required-field">Age</label>
-                            <input type="text" class="form-control" id="age" name="age" min="0" max="120" required>
-                        </div>
-                        
-                        <div class="col-md-3 mb-3">
-                            <label for="phone" class="form-label required-field">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="idNumber" class="form-label required-field">ID Number</label>
-                            <input type="text" class="form-control" id="idNumber" name="idNumber" required>
+                            <label for="title" class="form-label required-field">Case Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="location" class="form-label required-field">Location</label>
-                            <input type="text" class="form-control" id="location" name="location" required>
+                            <label for="patient_id" class="form-label required-field">Select Patient</label>
+                            <select class="form-select" id="patient_id" name="patient_id" required>
+                                <option value="">Choose a patient...</option>
+                                <?php
+                                $patientsResult = $conn->query("
+                                SELECT u.id, CONCAT(u.first_name, ' ', u.last_name) AS full_name
+                                FROM users u
+                                JOIN patients p ON u.id = p.user_id
+                                WHERE u.active = 1
+                            ");
+                            
+                            while ($row = $patientsResult->fetch_assoc()) {
+                                echo "<option value='{$row['id']}'>{$row['full_name']}</option>";
+                            }
+                                ?>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -203,42 +84,40 @@
                 <div class="mb-4">
                     <h5 class="mb-3 border-bottom pb-2">Case Information</h5>
                     
-                    <div class="mb-3">
-                        <label class="form-label required-field">Case Type</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="caseType" id="dental" value="dental" required>
-                            <label class="form-check-label" for="dental">
-                                Dental اسنان
-                            </label>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label required-field">Case Type</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="caseType" id="dental" value="dental" required>
+                                <label class="form-check-label" for="dental">Dental اسنان</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="caseType" id="medical" value="medical">
+                                <label class="form-check-label" for="medical">Medical بشري</label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="caseType" id="medical" value="medical">
-                            <label class="form-check-label" for="medical">
-                                Medical بشري
-                            </label>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="tags" class="form-label">Tags (comma-separated)</label>
+                            <input type="text" class="form-control" id="tags" name="tags" placeholder="e.g. dental, cavity, xray">
                         </div>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="description" class="form-label required-field">Case Description</label>
-                        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="fileAttachment" class="form-label">File Attachment</label>
-                        <input class="form-control" type="file" id="fileAttachment" name="fileAttachment" multiple>
-                        <div class="form-text">You can upload X-rays, reports, or other relevant documents (PDF, JPG, PNG)</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fileAttachment" class="form-label">File Attachment</label>
-                        <input class="form-control" type="file" id="fileAttachment" name="fileAttachment" multiple>
-                        <div class="form-text">You can upload X-rays, reports, or other relevant documents (PDF, JPG, PNG)</div>
+
+                        <div class="col-12 mb-3">
+                            <label for="description" class="form-label required-field">Case Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                            <label for="fileAttachment" class="form-label">File Attachment</label>
+                            <input class="form-control" type="file" id="fileAttachment" name="fileAttachment[]" multiple>
+                            <div class="form-text">You can upload X-rays, reports, or other relevant documents (PDF, JPG, PNG)</div>
+                        </div>
                     </div>
                 </div>
-                
+
                 <!-- Submit Button -->
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-primary btn-lg btn-submit" onclick="alert('Under Reviewing')">
+                    <button type="submit" class="btn btn-primary btn-lg btn-submit">
                         <i class="fa-solid fa-paper-plane me-2"></i> Submit Case
                     </button>
                 </div>
@@ -246,51 +125,4 @@
         </div>
     </div>
     <!--* ======================================================== start footer ======================================== -->
-    <footer>
-        <div class="container py-5 mt-5">
-          <button class="up-btn rounded-circle">
-            <a class="text-light" href="#up">
-              <i class="fa-solid angle fa-angle-up"></i>
-            </a>
-          </button>
-          <div class="row">
-            <div class="col-lg-3 footer-logo">
-              <a class="fw-bold fs-4 text-black" href="#">
-                <img src="./imgs/Logo2.png" alt="LOGO" width="30" height="50" />
-                <span class="logo-text">Taazur</span>
-              </a>
-            </div>
-            <div class="col-lg-6">
-              <ul class="list-unstyled footer-list d-flex justify-content-center">
-                <li class="d-inline-block ms-4">Home</li>
-                <li class="d-inline-block ms-4">About</li>
-                <li class="d-inline-block ms-4">Cases</li>
-                <li class="d-inline-block ms-4">Blogs</li>
-              </ul>
-            </div>
-            <div class="col-lg-3">
-              <p class="text-secondary">
-                Copyright © 2025 All rights reserved to Taazur | Made with
-                <i
-                  class="fa fa-heart"
-                  aria-hidden="true"
-                  style="color: #3b1e54"
-                ></i>
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!--! ======================================================== end footer ======================================== -->
-  
-
-      <!--? login-modal link -->
-      <script src="js/login-modal.js"></script>
-      <!--? custom js -->
-      <script src="js/navbar-toggler.js"></script>
-      <!--? bootstrap -->
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/all.min.js"></script>
-    </body>
-  </html>
-  
+    <?php include 'footer.php'; ?>

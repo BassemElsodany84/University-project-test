@@ -23,6 +23,7 @@ include 'db.php';
     <link rel="stylesheet" href="style/style.css" />
     <link rel="stylesheet" href="style/btn-effect.css" />
     <link rel="stylesheet" href="style/login-modal.css" />
+    <link rel="stylesheet" href="style/creatCase.css" />
     <link rel="stylesheet" href="style/blog.css" />
     <link rel="stylesheet" href="style/about.css" />
     <link rel="stylesheet" href="style/cases.css" />
@@ -47,6 +48,13 @@ include 'db.php';
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <style>
+      .container-modal {
+        max-width: 800px;
+        width: 100%;
+        height: 1000px;
+      }
+    </style>
     <title>Taazur</title>
   </head>
   <body>
@@ -61,6 +69,25 @@ include 'db.php';
             <input type="text" name="first_name" placeholder="First Name" required />
             <input type="text" name="last_name" placeholder="Last Name" required />
             <input type="email" name="email" placeholder="Email" required />
+            <div class="contact-details">
+              <input type="text" name="phone_number" placeholder="Phone Number" required />
+              <input type="text" name="street" placeholder="Street Address" required />
+              <input type="text" name="city" placeholder="City" required />
+              <select name="country" class="form-select mb-2" required>
+                <option value="">Select Country</option>
+                <option value="Egypt">Egypt</option>
+                <option value="Saudi Arabia">Saudi Arabia</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="Jordan">Jordan</option>
+                <option value="Lebanon">Lebanon</option>
+                <option value="Qatar">Qatar</option>
+                <option value="Kuwait">Kuwait</option>
+                <option value="Bahrain">Bahrain</option>
+                <option value="Oman">Oman</option>
+                <option value="Other">Other</option>
+              </select>
+              <input type="date" name="date_of_birth" placeholder="Date of Birth" required />
+            </div>
             <input type="password" name="password" placeholder="Password" required />
             <input type="hidden" name="role" id="role" value="patient" />
 
@@ -147,18 +174,16 @@ include 'db.php';
               class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-between"
             >
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.php"
-                  >Home</a
-                >
+                <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>" aria-current="page" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="cases.php">Cases</a>
+                <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'cases.php' ? 'active' : '' ?>" href="cases.php">Cases</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="blog.php">Blogs </a>
+                <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'blog.php' ? 'active' : '' ?>" href="blog.php">Blogs </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.php">About</a>
+                <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : '' ?>" href="about.php">About</a>
               </li>
             </ul>
             

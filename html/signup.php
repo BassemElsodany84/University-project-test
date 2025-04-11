@@ -23,8 +23,14 @@ $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $role = $_POST['role'];
 $active = $role === 'patient' ? 1 : 0;
 
-$stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role, active) VALUES (?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssssi", $first, $last, $email, $password, $role, $active);
+$phone = $_POST['phone_number'];
+$street = $_POST['street'];
+$city = $_POST['city'];
+$country = $_POST['country'];
+$dob = $_POST['date_of_birth'];
+
+$stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password, role, active, phone_number, street, city, country, date_of_birth) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssisssss", $first, $last, $email, $password, $role, $active, $phone, $street, $city, $country, $dob);
 $stmt->execute();
 $user_id = $stmt->insert_id;
 $stmt->close();

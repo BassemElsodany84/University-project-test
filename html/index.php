@@ -1,4 +1,25 @@
 <?php include 'header.php'; ?>
+<?php include 'db.php'; ?>
+
+<?php
+$filterCategory = null;
+if (isset($_GET['category'])) {
+    $category = strtolower($_GET['category']);
+    if (in_array($category, ['medical', 'dental'])) {
+        $filterCategory = $category;
+    }
+}
+
+$sql = "SELECT c.id, c.title, c.description, c.category, i.image_url 
+        FROM cases c 
+        JOIN case_images i ON c.id = i.case_id";
+
+if ($filterCategory) {
+    $sql .= " WHERE c.category = '" . $conn->real_escape_string($filterCategory) . "'";
+}
+
+$result = $conn->query($sql);
+?>
 
     <!--* ======================================================== start landing ======================================== -->
     <section class="landing header" id="up">
@@ -17,6 +38,11 @@
     <section class="successful-cases py-5">
       <div class="container">
         <h2 class="sec-title text-center mb-5">Successful Cases</h2>
+        <div class="filter-buttons text-center mb-4">
+          <a href="cases.php?category=medical" class="btn btn-filter">Medical</a>
+          <a href="cases.php?category=dental" class="btn btn-filter">Dental</a>
+          <a href="cases.php" class="btn btn-danger w-100 mt-3">Clear Filter</a>
+        </div>
         <div class="row">
           <div class="col-lg-3 col-md-6 mb-4">
             <div class="card">
