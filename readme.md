@@ -39,7 +39,7 @@ This project is a web-based application designed to manage medical and dental ca
 3. **Access the application**:
    - Once the containers are up and running, open your browser and navigate to:
      ```bash
-     http://localhost
+     http://localhost:8080
      ```
 
 4. **Set up the database**:
@@ -52,13 +52,13 @@ This project is a web-based application designed to manage medical and dental ca
 5. **Access PHPMyAdmin** (optional):
    - If you want to manage the database via a GUI, you can access **PHPMyAdmin** at:
      ```bash
-     http://localhost:8080
+     http://localhost:8081
      ```
 
 6. **Running the Project**:
    - After starting the containers with Docker Compose, your application will be available at:
      ```bash
-     http://localhost
+     http://localhost:8080
      ```
 
 ## Rebuilding the Project
