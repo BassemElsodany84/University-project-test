@@ -3,18 +3,18 @@
 include 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'doctor' || !$_SESSION['active']) {
-        $error_message = "You must be a verified doctor to submit a case.";
+    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'patient' || !$_SESSION['active']) {
+        $error_message = "You must be a verified patient to submit a case.";
     } else {
-        $doctor_id = $_SESSION['user_id'];
+        $patient_id = $_SESSION['user_id'];
         $title = $conn->real_escape_string($_POST['title']);
         $description = $conn->real_escape_string($_POST['description']);
         $category = $_POST['caseType'];
-        $patient_id = $_POST['patient_id'];
         $tags = $conn->real_escape_string($_POST['tags']);
+        $target_amount = $_POST['target_amount'];
 
-        $stmt = $conn->prepare("INSERT INTO cases (doctor_id, patient_id, title, description, category, tags) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iissss", $doctor_id, $patient_id, $title, $description, $category, $tags);
+        $stmt = $conn->prepare("INSERT INTO cases (patient_id, title, description, category, tags, target_amount) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("issssd", $patient_id, $title, $description, $category, $tags, $target_amount);
         $stmt->execute();
         $case_id = $stmt->insert_id;
         $stmt->close();
@@ -60,22 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </div>
                         
                         <div class="col-md-6 mb-3">
-                            <label for="patient_id" class="form-label required-field">Select Patient</label>
-                            <select class="form-select" id="patient_id" name="patient_id" required>
-                                <option value="">Choose a patient...</option>
-                                <?php
-                                $patientsResult = $conn->query("
-                                SELECT u.id, CONCAT(u.first_name, ' ', u.last_name) AS full_name
-                                FROM users u
-                                JOIN patients p ON u.id = p.user_id
-                                WHERE u.active = 1
-                            ");
-                            
-                            while ($row = $patientsResult->fetch_assoc()) {
-                                echo "<option value='{$row['id']}'>{$row['full_name']}</option>";
-                            }
-                                ?>
-                            </select>
+                            <label for="target_amount" class="form-label required-field">Target Donation Amount</label>
+                            <input type="number" class="form-control" id="target_amount" name="target_amount" min="1" required>
                         </div>
                     </div>
                 </div>

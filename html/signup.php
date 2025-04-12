@@ -19,7 +19,7 @@ $check->close();
 // Proceed with signup
 $first = $_POST['first_name'];
 $last = $_POST['last_name'];
-$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$password = $_POST['password'];
 $role = $_POST['role'];
 $active = $role === 'patient' ? 1 : 0;
 

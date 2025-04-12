@@ -41,7 +41,7 @@ if (isset($_GET['tags']) && !empty($_GET['tags'])) {
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * 6;
 
-$sql = "SELECT c.id, c.title, c.description, c.category, c.tags, i.image_url 
+$sql = "SELECT c.id, c.title, c.description, c.category, c.tags, c.target_amount, i.image_url 
         FROM cases c 
         JOIN case_images i ON c.id = i.case_id";
 
@@ -106,11 +106,19 @@ $totalPages = ceil($countRow['total'] / 6);
           <?php
               if (
                 isset($_SESSION['user_id']) &&
-                $_SESSION['role'] === 'doctor' &&
+                in_array($_SESSION['role'], ['doctor', 'patient']) &&
                 $_SESSION['active']
               ):
           while ($row = $result->fetch_assoc()):
-          ?>
+              $donationQuery = $conn->query("SELECT SUM(amount) AS total FROM donations WHERE case_id = " . (int)$row['id']);
+              $donationRow = $donationQuery->fetch_assoc();
+              $raised = $donationRow['total'] ?? 0.00;
+              $doctorName = null;
+              $doctorResult = $conn->query("SELECT CONCAT(first_name, ' ', last_name) AS name FROM users WHERE id = (SELECT doctor_id FROM cases WHERE id = " . (int)$row['id'] . ")");
+              if ($doctorResult && $doctorRow = $doctorResult->fetch_assoc()) {
+                  $doctorName = $doctorRow['name'];
+              }
+              ?>
             <div class="col-md-6 col-lg-4 mb-4 case-card" data-category="<?= ucfirst($row['category']) ?>" id="case-<?= $row['id'] ?>">
               <div class="card">
                 <img src="<?= htmlspecialchars($row['image_url']) ?>" class="card-img-top" alt="<?= htmlspecialchars($row['title']) ?>">
@@ -131,7 +139,19 @@ $totalPages = ceil($countRow['total'] / 6);
                   </div>
                     </p>
                   <div class="d-flex flex-column justify-content-between" style="height: 100%;">
-                      <div class="d-flex justify-content-between mt-auto">
+          <?php
+          $progressPercent = $row['target_amount'] > 0 ? min(100, ($raised / $row['target_amount']) * 100) : 0;
+          ?>
+          <?php if ($doctorName): ?>
+              <p class="mb-1"><strong>Assigned Doctor:</strong> <?= htmlspecialchars($doctorName) ?></p>
+          <?php endif; ?>
+          <div class="progress mb-2" style="height: 6px;">
+              <div class="progress-bar" role="progressbar" style="width: <?= $progressPercent ?>%;" aria-valuenow="<?= $progressPercent ?>" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <p class="mt-2">
+              £<?= number_format($raised, 2) ?> raised of £<?= number_format($row['target_amount'], 2) ?> target
+          </p>
+          <div class="d-flex justify-content-between mt-auto">
                       <button class="btn case-btn btn-take" 
                               data-bs-toggle="modal" 
                               data-bs-target="#takeModal"
@@ -139,10 +159,21 @@ $totalPages = ceil($countRow['total'] / 6);
                               data-description="<?= htmlspecialchars($row['description']) ?>"
                               data-image="<?= htmlspecialchars($row['image_url']) ?>"
                               data-category="<?= ucfirst($row['category']) ?>"
-                              data-tags="<?= htmlspecialchars($row['tags']) ?>">
+                              data-tags="<?= htmlspecialchars($row['tags']) ?>"
+                              data-raised="<?= $raised ?>"
+                              data-target="<?= $row['target_amount'] ?>"
+                              <?= ($_SESSION['role'] !== 'doctor') ? 'disabled' : '' ?>>
                           Take the Case
                       </button>
-                          <button class="btn case-btn btn-help" data-bs-toggle="modal" data-bs-target="#helpModal">Help</button>
+                      <button class="btn case-btn btn-help" 
+                              data-bs-toggle="modal" 
+                              data-bs-target="#helpModal"
+                              data-case-id="<?= $row['id'] ?>"
+                              data-target="<?= $row['target_amount'] ?>"
+                              data-raised="<?= $raised ?>"
+                              <?= ($_SESSION['role'] !== 'patient') ? 'disabled' : '' ?>>
+                          Help
+                      </button>
                       </div>
                   </div>
                 </div>
@@ -151,7 +182,7 @@ $totalPages = ceil($countRow['total'] / 6);
             </div>
           <?php endwhile;  else: ?>
             <div class="col-12">
-        <div class="alert alert-warning text-center">You must be a verified doctor to view available cases.</div>
+        <div class="alert alert-warning text-center">You must be a verified doctor or patient to view available cases.</div>
       </div>
     <?php endif; ?>
                 </div>
@@ -179,27 +210,30 @@ $totalPages = ceil($countRow['total'] / 6);
           </div>
           <h5 class="modal-title ps-3" id="helpModalLabel"> </h5>
               <p class="modal-description px-3 py-1"> </p>
-              <div class="modal-body">
-                <div class="currency-container ">
-                  <select class="form-select currency-select">
-                    <option selected>GBP</option>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="JPY">JPY</option>
-                    <option value="AUD">AUD</option>
-                  </select>
-                  <input type="text" class=" amount-input" placeholder="Amount">
+              <form class="donation-form" method="POST" action="donate.php">
+                <input type="hidden" name="case_id" id="donation-case-id">
+                <div class="modal-body">
+                  <div class="currency-container ">
+                    <select class="form-select currency-select">
+                      <option selected>GBP</option>
+                      <option value="USD">USD</option>
+                      <option value="EUR">EUR</option>
+                      <option value="JPY">JPY</option>
+                      <option value="AUD">AUD</option>
+                    </select>
+                    <input type="text" class="amount-input" placeholder="Amount" name="amount">
+                  </div>
+                  <div class="progress my-4" style="height: 7px;">
+                    <div class="progress-bar" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <p class="mt-2">£4,783.32 raised of £10,000 target</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hideAmount">
+                    <label class="form-check-label" for="hideAmount">Hide donation amount from public view</label>
+                  </div>
+                  <button type="submit" class="btn btn-Continue mt-3">DONATE</button>
                 </div>
-                <div class="progress my-4" style="height: 7px;">
-                  <div class="progress-bar" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p class="mt-2">£4,783.32 raised of £10,000 target</p>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="hideAmount">
-                  <label class="form-check-label" for="hideAmount">Hide donation amount from public view</label>
-                </div>
-                <button class="btn btn-Continue  mt-3">Continue</button>
-              </div>
+              </form>
               <div class="donation-footer">
                 <p class="mb-1">DONATE WITH CONFIDENCE</p>
                 <div class="icon-container">
@@ -225,6 +259,16 @@ $totalPages = ceil($countRow['total'] / 6);
                     <p class="modal-description"></p>
                     <h6 class="modal-category"></h6> <!-- For the case category -->
                     <div class="modal-tags"></div> <!-- Tags will be displayed here -->
+                    <div class="modal-donation-info mt-3">
+                        <div class="progress mb-2" style="height: 6px;">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <p class="mt-2 donation-text">£0.00 raised of £0.00 target</p>
+                    </div>
+                    <form method="POST" action="assign_case.php">
+                        <input type="hidden" name="case_id" id="assign-case-id">
+                        <button type="submit" class="btn btn-primary mt-3">Assign Case to Me</button>
+                    </form>
                 </div>
                 <div class="modal-right" style="flex: 0.5; display: flex; justify-content: center;">
                     <img class="img-fluid rounded-2" alt="Case Image" style="max-height: 200px; object-fit: cover;">
@@ -270,5 +314,40 @@ $('#takeModal').on('show.bs.modal', function (event) {
         tagsHtml += '<span class="badge bg-info me-1">' + tag.trim() + '</span>';
     });
     modal.find('.modal-tags').html(tagsHtml);
+
+    var raised = button.data('raised');
+    var target = button.data('target');
+    var caseId = button.closest('.case-card').attr('id').split('-')[1];
+
+    modal.find('#assign-case-id').val(caseId);
+
+    var progress = Math.min((raised / target) * 100, 100);
+    modal.find('.modal-donation-info .progress-bar')
+         .css('width', progress + '%')
+         .attr('aria-valuenow', progress);
+    modal.find('.modal-donation-info .donation-text')
+         .text('£' + parseFloat(raised).toFixed(2) + ' raised of £' + parseFloat(target).toFixed(2) + ' target');
+});
+
+$('#helpModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var raised = button.data('raised');
+    var target = button.data('target');
+    var currency = '£'; // Default symbol
+
+    var modal = $(this);
+    modal.find('.modal-title').text('Help for Case ID: ' + button.data('case-id'));
+
+    // Populate the donation case ID
+    modal.find('#donation-case-id').val(button.data('case-id'));
+
+    // Update the progress bar
+    modal.find('.progress-bar')
+         .css('width', Math.min((raised / target) * 100, 100) + '%')
+         .attr('aria-valuenow', raised);
+
+    // Update the raised/target text
+    modal.find('.modal-body p.mt-2')
+         .text(currency + parseFloat(raised).toFixed(2) + ' raised of ' + currency + parseFloat(target).toFixed(2) + ' target');
 });
 </script>

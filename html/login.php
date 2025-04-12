@@ -14,7 +14,7 @@ if ($stmt->num_rows === 1) {
     $stmt->bind_result($id, $first, $last, $hashed, $role, $active);
     $stmt->fetch();
 
-    if (password_verify($password, $hashed)) {
+    if ($password === $hashed) {
         if (!$active) {
             $_SESSION['login_error'] = "Your account is awaiting verification.";
             header("Location: index.php#login");

@@ -4,10 +4,26 @@
 This project is a web-based application designed to manage medical and dental cases. It allows doctors to submit and view cases, while patients can be assigned cases and view their progress. The platform features filtering by category, viewing case details in modals, and an easy-to-use interface for all users.
 
 ## Features
-- **Case Management**: Doctors can create and assign cases to patients.
-- **Filter by Category**: Medical and Dental case filtering.
-- **Pagination**: View cases 6 per page.
-- **Responsive Design**: Optimized for both mobile and desktop views.
+- **User Authentication**: Signup and login for doctors and patients with role-based session management.
+- **Case Creation**:
+  - Patients can create new cases with detailed descriptions, images, and funding targets.
+- **Case Assignment**:
+  - Doctors can view unassigned cases and assign themselves through a modal interface.
+- **Donation System**:
+  - Patients can donate to cases with visible progress bars showing amount raised vs target.
+- **Case Filtering**:
+  - Users can filter cases by category (Medical, Dental).
+- **Role-based UI Controls**:
+  - “Take the Case” button is only enabled for doctors.
+  - “Help” button (donation) is only enabled for patients.
+- **Case Details Modal**:
+  - Clicking “Take the Case” or “Help” shows a modal with case description, tags, and funding info.
+- **Progress Visualization**:
+  - Cases display a progress bar and textual breakdown of raised funds above the donation section.
+- **Case Assignment Visibility**:
+  - If a doctor is assigned, their name is shown above the funding bar.
+- **Responsive Design**:
+  - Works well on both desktop and mobile devices.
 
 ## Technologies Used
 - **Frontend**: HTML, CSS, JavaScript, Bootstrap

@@ -204,7 +204,28 @@ include 'db.php';
         </div>
       </nav>
     </header>
-    <?php if (isset($_SESSION['signup_error'])): ?>
+<?php if (isset($_GET['status'])): ?>
+  <div class="alert text-center mb-0 rounded-0 
+    <?= $_GET['status'] === 'success' ? 'alert-success' : 'alert-danger' ?>">
+    <?php
+      switch ($_GET['status']) {
+        case 'success':
+          echo 'Donation successful!';
+          break;
+        case 'unauthorized':
+          echo 'Only logged-in patients can donate.';
+          break;
+        case 'invalid':
+          echo 'Invalid donation data. Please try again.';
+          break;
+        default:
+          echo 'Unexpected error.';
+      }
+    ?>
+  </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['signup_error'])): ?>
   <div class="alert alert-danger text-center mb-0 rounded-0">
     <?= $_SESSION['signup_error']; unset($_SESSION['signup_error']); ?>
   </div>
@@ -226,6 +247,13 @@ include 'db.php';
   <div class="alert alert-success text-center mb-0 rounded-0">
     <?= $_SESSION['login_success']; unset($_SESSION['login_success']); ?>
   </div>
+<?php endif; ?>
+<?php if (isset($_SESSION['message'])): ?>
+  <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissible fade show" role="alert">
+    <?= htmlspecialchars($_SESSION['message']) ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <?php unset($_SESSION['message']); ?>
 <?php endif; ?>
 <script>
   document.getElementById('type1').onclick = () => {
